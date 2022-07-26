@@ -37,4 +37,4 @@ display(fig)
 
 The output of the above code produces something like this:
 
-![](https://github.com/maxhcohen/VectorFieldPlots.jl/blob/main/example.pdf)
+![](https://github.com/maxhcohen/VectorFieldPlots.jl/blob/main/images/example.png)
