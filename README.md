@@ -38,3 +38,8 @@ display(fig)
 The output of the above code produces something like this:
 
 ![](https://github.com/maxhcohen/VectorFieldPlots.jl/blob/main/images/example.png)
+
+By default, the length of each vector is normalized and then scaled according to the keyword argument `scale` so that the plot isn't cluttered. The magnitude of each vector is indicated by the `colormap` keyword argument which defaults to `:viridis`. 
+
+## Disclaimer
+This code has only been tested with the GR backend of [Plots.jl](https://github.com/JuliaPlots/Plots.jl). Ultimately, the goal is to also support the [PGFPlotsX](https://github.com/KristofferC/PGFPlotsX.jl) backend, but for some reason the process of normalizing the vector field causes problems there.
