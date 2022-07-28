@@ -1,5 +1,5 @@
 # VectorFieldPlots.jl
-A simple package for plotting vector fields in Julia.
+A simple package for plotting vector fields and phase portraits in Julia. The main utilities of this package are provided by the functions `plot_vector_field` and `plot_phase_portrait`, which take as inputs a list of `x` and `y` coordinates specifying the region to plot over, and a function `f(x, y)` that describes the vector field. 
 
 ## Installation
 To download this package open up the Julia REPL, enter the package manager (type `]` into the REPL) and type
@@ -7,10 +7,9 @@ To download this package open up the Julia REPL, enter the package manager (type
     add https://github.com/maxhcohen/VectorFieldPlots.jl.git
 
 ## Example usage
-The following code provides a simple use case of this package.
+The following code shows how to use this package to plot the vector field and phase portrait for the Van der Pol oscillator.
 
 ```julia
-# Import packages
 using Plots
 using LaTeXStrings
 using VectorFieldPlots
@@ -18,26 +17,35 @@ using VectorFieldPlots
 # Plot defaults so things look nice
 default(grid=false, framestyle=:box, label="", fontfamily="Computer Modern")
 
-# Define vector field
-f(x, y) = [-y, x]
+# Parameters of Van der Pol oscillator
+μ = 1.0
 
-# Region to plot over
-xs = -1.0:0.1:1.0
-ys = -1.0:0.1:1.0
+# Define vector field
+f(x, y) = [y, μ*(1 - x^2)*y - x]
+
+# Region to plot vector field over
+xs = -5.0:0.5:5.0
+ys = -5.0:0.5:5.0
+
+# Coordinates for initial conditions of phase portraits and length of corresponding sim
+xs_phase = -3.0:0.5:3.0
+ys_phase = -3.0:0.5:3.0
+T = 10.0
 
 # Plot the vector field
-fig = plot_vector_field(xs, ys, f, scale=0.1)
+fig = plot_vector_field(xs, ys, f, scale=0.35)
+plot_phase_portrait!(xs_phase, ys_phase, f, T)
 xlabel!(L"x")
 ylabel!(L"y")
-xlims!(-1, 1)
-ylims!(-1, 1)
+title!("Van der Pol oscillator")
+xlims!(-5, 5)
 display(fig)
 
 ```
 
-The output of the above code produces something like this:
+The above code produces the following image:
 
-![](https://github.com/maxhcohen/VectorFieldPlots.jl/blob/main/images/example.png)
+![](https://github.com/maxhcohen/VectorFieldPlots.jl/blob/main/images/van_der_pol.png)
 
 By default, the length of each vector is normalized and then scaled according to the keyword argument `scale` so that the plot isn't cluttered. The magnitude of each vector is indicated by the `colormap` keyword argument which defaults to `:viridis`. 
 
@@ -71,7 +79,6 @@ fig = @pgf Axis(
     {   
         xlabel = L"x",
         ylabel = L"y",
-        xmin = -1.0,
         "colormap/viridis",
         colorbar,
     },
