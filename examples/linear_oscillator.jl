@@ -15,6 +15,7 @@ ys = -1.0:0.1:1.0
 
 # Plot the vector field
 fig = plot_vector_field(xs, ys, f, scale=0.1)
+plot_phase_portrait!(-1:0.5:1, -1:0.5:1, f, 10.0)
 xlabel!(L"x")
 ylabel!(L"y")
 xlims!(-1, 1)
