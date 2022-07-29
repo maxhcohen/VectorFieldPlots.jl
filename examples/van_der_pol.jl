@@ -1,4 +1,5 @@
 # Import packages
+using Revise
 using Plots
 using LaTeXStrings
 using VectorFieldPlots
@@ -31,4 +32,4 @@ xlims!(-5, 5)
 display(fig)
 
 # Save figure
-savefig(fig, "van_der_pol.png")
+# savefig(fig, "van_der_pol.png")
