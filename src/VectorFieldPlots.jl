@@ -3,7 +3,7 @@ module VectorFieldPlots
 # Include required packages
 using LinearAlgebra
 using Plots
-import DifferentialEquations: ODEProblem, solve, Tsit5
+using OrdinaryDiffEq
 
 # Export functions
 export plot_vector_field
