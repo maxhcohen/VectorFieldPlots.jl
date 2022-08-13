@@ -58,12 +58,12 @@ function plot_phase_portrait!(X0::Vector{Vector{Float64}}, f::Function, T::Float
     X = [simulate(f, x0, T) for x0 in X0]
 
     # Get colors for each trajectory
-    colors = colormap("RdBu", length(X))
+    # colors = colormap("RdBu", length(X))
 
     # Plot each trajectory on the (x, y) plane
     fig = Plots.current()
     for (i, x) in enumerate(X)
-        plot!(x, vars=(1,2), label="", lw=lw, c=colors[i])
+        plot!(x, vars=(1,2), label="", lw=lw)
     end
 
     return fig
